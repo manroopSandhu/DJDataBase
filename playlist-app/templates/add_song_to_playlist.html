@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Add a song to {{ playlist.name }}</h1>
+
+<div id="new-song-for-playlist">
+    <form method="POST">
+        {{form.hidden_tag()}}
+
+        <div>
+            {{form.song_id.label}}
+            {{form.song_id}}
+        </div>
+
+        <div>
+            <input type="submit" value="Add song to playlist">
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
