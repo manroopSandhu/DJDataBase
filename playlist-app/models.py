@@ -30,7 +30,7 @@ class Song(db.Model):
     # create a title column that is a text, cannot be left blank
     title = db.Column(db.Text, nullable=False)
     # create an artist column that is a text, cannot be left blank
-    title = db.Column(db.Text, nullable=False)
+    artist = db.Column(db.Text, nullable=False)
 
 class PlaylistSong(db.Model):
     """Mapping of a playlist to a song."""

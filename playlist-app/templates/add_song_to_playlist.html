@@ -4,20 +4,27 @@
 
 <h1>Add a song to {{ playlist.name }}</h1>
 
-<div id="new-song-for-playlist">
-    <form method="POST">
-        {{form.hidden_tag()}}
+<h1>Add a form that when submitted adds a song to this playlist!</h1>
 
-        <div>
-            {{form.song_id.label}}
-            {{form.song_id}}
-        </div>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {% for field in form
+    if field.widget.input_type != 'hidden' %}
 
-        <div>
-            <input type="submit" value="Add song to playlist">
-        </div>
-    </form>
-</div>
+    <div class="form-group">
+        {{field.label}}
+        {{field(class_="form-control")}}
+        {% for err in field.errors %}
+
+        <small class="form-text text-danger">
+            {{err}}
+        </small>
+        { % endfor %}
+    </div>
+    {% endfor %}
+
+    <div id="form-buttons"></div>
+    <button class="btn btn-success btn-lg">submit</button>
 
 
 {% endblock %}

@@ -2,31 +2,19 @@
 
 {% block content %}
 
-<h1>New Song!!</h1>
-<div id="new-song">
-    <form method="POST">
-        {{form.hidden_tag() }}
-
-        <div>
-            {{form.title.label}}
-            {{form.title(size=40)}}
-            {% for error in form.title.errors %}
-            <span style="color: red">{{ error }}</span>
-            {% endfor %}
-        </div>
-
-        <div>
-            {{form.artist.label}}
-            {{form.artist(size=40)}}
-            {% for error in form.artist.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </div>
-        <div>
-            <input type="submit" value="Add Song">
-        </div>
+    <h1>Add a new playlist!</h1>
+    <form class='form-group' method="POST">
+        {{form.hidden_tag()}}
+        {% for field in form if field.widget.input_type != 'hidden' %}
+            <p>
+                {{field.label}}
+                {{field(class_='form-control')}}
+                {% for error in field.errors %}
+                    {{error}}
+                {% endfor %}
+            </p>
+        {% endfor %}
+        <button type='submit' class='btn btn-success'>Submit</button><br><br>
     </form>
-</div>
-
 
 {% endblock %}
