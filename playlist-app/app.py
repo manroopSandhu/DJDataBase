@@ -161,8 +161,10 @@ def add_song_to_playlist(playlist_id):
     form.song.choices = (db.session.query(Song.id, Song.title).filter(Song.id.notin_(curr_on_playlist)).all())
 
     if form.validate_on_submit():
-          playlist_song = PlaylistSong(song_id=form.song.data,playlist_id=playlist_id)
-          db.session.add(playlist_song)
+          
+           song_id = request.form['song']
+          song = Song.query.get_or_404(song_id)
+          playlist.songs.append(song)
           db.session.commit()
 
           # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK

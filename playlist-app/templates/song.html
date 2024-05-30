@@ -8,9 +8,9 @@
 </div>
 
 <ul>
-  {% for playlist in playlists %}
-  <li>{{playlist.name}} - {{playlist.description }}</li>
-  {% endfor %}
+    {% for playlist in song.playlists %}
+        <li><a href='/playlists/{{playlist.id}}'>{{playlist.name}}</a></li>
+    {% endfor %}
 </ul>
 
 {% endblock %}
