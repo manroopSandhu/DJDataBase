@@ -2,19 +2,21 @@
 
 {% block content %}
 
-    <h1>Add a new playlist!</h1>
-    <form class='form-group' method="POST">
-        {{form.hidden_tag()}}
-        {% for field in form if field.widget.input_type != 'hidden' %}
-            <p>
-                {{field.label}}
-                {{field(class_='form-control')}}
-                {% for error in field.errors %}
-                    {{error}}
-                {% endfor %}
-            </p>
+<h1>Add a form that when submitted creates a new playlist!</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {% for field in form
+    if field.widget.input_type != 'hidden' %}
+    <div class="form-group">
+        {{field.label}}
+        {{field(class_="form-control")}}
+        {% for err in field.errors %}
+        <small class="form-text text-danger">
+            {{err}}
+        </small>
         {% endfor %}
-        <button type='submit' class='btn btn-success'>Submit</button><br><br>
-    </form>
-
+    </div>
+    {% endfor %}
+    <div id="form-buttons">
+    <button class="btn btn-success btn-lg">Submit</button>
 {% endblock %}
